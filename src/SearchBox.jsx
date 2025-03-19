@@ -8,11 +8,11 @@ export default function SearchBox({updateInfo}){
     let [error,seterror] = useState(false);
 
     const API_URL = "https://api.openweathermap.org/data/2.5/weather";
-    const API_KEY = "dd937256ff618efde38ffc99451e598d";
+    const api_key = process.env.REACT_APP_API_URL;
 
     const getWeatherInfo = async ()=>{
         try{
-            let response = await fetch(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`);
+            let response = await fetch(`${API_URL}?q=${city}&appid=${api_key}&units=metric`);
             let jsonResponse = await response.json();
             // console.log(jsonResponse);
             let result ={
@@ -49,6 +49,7 @@ export default function SearchBox({updateInfo}){
         catch(err){
             seterror(true);
             alert("Please enter a valid city");
+            
        }
        
     }
@@ -72,7 +73,7 @@ export default function SearchBox({updateInfo}){
                <Button variant="contained" type="submit">
                   search
                </Button>
-              
+
                
             </form>
         </div>
